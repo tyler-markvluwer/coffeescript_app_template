@@ -13,6 +13,7 @@ class Exercise extends EventEmitter
 
 	complete_set: () ->
 		@sets_remaining--
+		@emit 'change'
 
 	add_set: () ->
 		@sets_remaining++

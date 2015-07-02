@@ -11,25 +11,32 @@ br = React.createFactory('br')
 
 ExerciseView = React.createClass
 	componentDidMount: ->
+		print "exercise mount"
+		# @setState({exercise: @props.exercise})
 		@props.exercise.on 'change', @update
 
 	update: ->
+		print "exercise update"
 		@forceUpdate()
 
+	getInitialState: ->
+		return {exercise: @props.exercise}
+
 	render: ->
+		print "exercise render"
 		div
 			className: 'exercise-info'
 			ul
 				className: 'exercise-attrs'
 				li
-					'\nExercise Name: ' + @props.exercise.name
+					'\nExercise Name: ' + @state.exercise.name
 				li
-					'\nSets Remaining: ' + @props.exercise.sets_remaining
+					'\nSets Remaining: ' + @state.exercise.sets_remaining
 				li
-					'\nReps: ' + @props.exercise.motion.reps
+					'\nReps: ' + @state.exercise.motion.reps
 				li
-					'\nWeight: ' + @props.exercise.motion.weight
+					'\nWeight: ' + @state.exercise.motion.weight
 			TimerView
-				timer: @props.exercise.timer
+				timer: @state.exercise.timer
 
 module.exports = React.createFactory(ExerciseView)

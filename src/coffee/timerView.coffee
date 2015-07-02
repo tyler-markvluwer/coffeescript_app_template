@@ -8,12 +8,16 @@ br = React.createFactory('br')
 
 TimerView = React.createClass
 	componentDidMount: ->
+		console.log "timer mount"
 		@props.timer.on 'change', @update
 
 	update: ->
+		console.log "timer update"
+		@props.timer.on 'change', @update
 		@forceUpdate()
 
 	render: ->
+		console.log "timer render"
 		div
 			className: 'timer'
 			div
@@ -23,5 +27,5 @@ TimerView = React.createClass
 				className: 'timer-controls'
 				StartStopTimerButton
 					timer: @props.timer
-	
+
 module.exports = React.createFactory(TimerView)

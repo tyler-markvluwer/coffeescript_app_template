@@ -2,29 +2,33 @@ React = require('react')
 ExerciseView = require('./exerciseView')
 WorkoutNavBarView = require('./workoutNavBarView')
 
+print = (args) ->
+	console.log args
+
 div = React.createFactory('div')
 
 WorkoutView = React.createClass
 	componentDidMount: ->
+		print "workout update"
 		@props.workout.on 'change', @update
 
+	getInitialState: ->
+		return {
+			exercise: @props.workout.get_current_exercise()
+		}
+
 	update: ->
+		print "workout update"
+		@setState({exercise: @props.workout.get_current_exercise()})
 		@forceUpdate()
 
 	render: ->
+		print "workout render"
 		div
 			className: 'workout-view'
 			ExerciseView
-				exercise: @props.workout.get_current_exercise()
-			div
-				className: 'prev-button'
-				onClick: @props.workout.get_prev_exercise()
-				'<- Prev'
-			div
-				className: 'next-button'
-				onClick: @props.workout.get_next_exercise()
-				'Next ->'
-			# WorkoutNavBarView
-			# 	workout: @props.workout
+				exercise: @state.exercise
+			WorkoutNavBarView
+			 	workout: @props.workout
 
 module.exports = React.createFactory(WorkoutView)

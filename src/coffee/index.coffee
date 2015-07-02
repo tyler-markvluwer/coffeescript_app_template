@@ -20,5 +20,6 @@ window.workout.add_exercise(exercise2)
 React.render(
 	WorkoutView
 		workout: window.workout
+		target: 'workout-view'
 	document.getElementById('workout-view')
 )
