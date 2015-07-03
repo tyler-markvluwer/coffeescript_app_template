@@ -9,6 +9,8 @@ ul = React.createFactory('ul')
 li = React.createFactory('li')
 br = React.createFactory('br')
 
+col_size = 'col-md-4'
+
 ExerciseView = React.createClass
 	componentDidMount: ->
 		print "exercise mount"
@@ -25,18 +27,24 @@ ExerciseView = React.createClass
 	render: ->
 		print "exercise render"
 		div
-			className: 'exercise-info'
-			ul
-				className: 'exercise-attrs'
-				li
+			className: 'container'
+			div
+				className: 'row exercise-info'
+				div
+					className: col_size
 					'\nExercise Name: ' + @state.exercise.name
-				li
+				div
+					className: col_size
 					'\nSets Remaining: ' + @state.exercise.sets_remaining
-				li
+				div
+					className: col_size
 					'\nReps: ' + @state.exercise.motion.reps
-				li
+				div
+					className: col_size
 					'\nWeight: ' + @state.exercise.motion.weight
-			TimerView
-				timer: @state.exercise.timer
+			div
+				className: 'row timer-container'
+				TimerView
+					timer: @state.exercise.timer
 
 module.exports = React.createFactory(ExerciseView)
