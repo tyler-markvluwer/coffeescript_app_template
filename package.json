@@ -32,5 +32,8 @@
     "weight"
   ],
   "author": "Tyler Markvluwer",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "broccoli": "^0.15.4"
+  }
 }
