@@ -16,6 +16,7 @@ class Model extends EventEmitter
     # accessor functions are a good idea when using a "Model"
     get_click_count: () ->
         @click_count # automatically returns last line in method
+        # 'return @click_count' would do the exact same thing
 
     print_click_count: () ->
         print @click_count # no parenthese needed!
