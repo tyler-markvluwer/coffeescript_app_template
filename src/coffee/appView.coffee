@@ -8,7 +8,7 @@ appView = React.createClass
     #       User Functions
     #################################
     handleButtonClick: () ->
-
+        @props.model.increment_click_count() # don't forget parentheses (function call operator). Hard bug to find
     
     #################################
     #       React Functions
@@ -19,6 +19,7 @@ appView = React.createClass
 
     update: ->
         # print "component update"
+        console.log "updating"
         @forceUpdate()
 
     render: ->
@@ -29,11 +30,12 @@ appView = React.createClass
             div
                 className: 'react-div'
                 id: 'super-cool-div'
-                'I am a react div!' # innerHTML contents
+                onClick: @handleButtonClick # no parentheses here, passing the function as an object
+                'I am a react div! (click me!)' # innerHTML contents
 
             div
                 className: 'centered-display'
                 id: 'clicker-counter-display'
-                '0 clicks' # TODO(tmarkvluwer): make this not hard-coded
+                'clicks: ' + @props.model.get_click_count()
 
 module.exports = React.createFactory(appView)

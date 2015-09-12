@@ -8,8 +8,14 @@ class Model extends EventEmitter
     constructor: (@app_name, @app_desc) ->
         @click_count = 0 # @ denotes instance variable
 
-    update_click_count: () ->
+    increment_click_count: () ->
         @click_count += 1
+        print "counter = " + @click_count        
+        @emit 'change'
+
+    # accessor functions are a good idea when using a "Model"
+    get_click_count: () ->
+        @click_count # automatically returns last line in method
 
     print_click_count: () ->
         print @click_count # no parenthese needed!
